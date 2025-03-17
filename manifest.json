@@ -1,0 +1,50 @@
+{
+    "name": "Terabithia V2",
+    "description": "Extension for testing and development of the Terabithia.JS framework.",
+    "version": "2.0.0.1",
+    "manifest_version": 3,
+    "host_permissions": ["<all_urls>"],
+    "permissions": ["storage"],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["terabithia/terabithia-isolated.js"],
+            "world": "ISOLATED"
+        },
+        {
+            "matches": ["<all_urls>"],
+            "js": ["terabithia/terabithia-main.js"],
+            "world": "MAIN"
+        },
+        {
+            "matches": ["https://react.dev/*"],
+            "js": ["react.dev/isolated.js"],
+            "world": "ISOLATED"
+        },
+        {
+            "matches": ["https://react.dev/*"],
+            "js": ["react.dev/main.js"],
+            "world": "MAIN"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": ["images/*", "terabithia.js"],
+            "matches": ["<all_urls>"]
+        }
+    ],
+    "icons": {
+        "16": "./images/icon.png",
+        "32": "./images/icon.png",
+        "48": "./images/icon.png",
+        "128": "./images/icon.png"
+    },
+    "action": {
+        "default_icon": {
+            "16": "./images/icon.png"
+        }
+    }
+}
