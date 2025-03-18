@@ -3,6 +3,9 @@
     const TERABITHIA_BRIDGE_ID = 'TERABITHIA_EXTENSION';
     // Extension Identifier
 
+    // We cannot set "window.TERABITHIA_BRIDGE_ID = TERABITHIA_BRIDGE_ID;" here because this is in main context and it could conflict with other extensions
+    // We must always be explicit when specifying the extension ID in the main context
+
     window.TerabithiaBridge[TERABITHIA_BRIDGE_ID].addHandlers({
         helloFromIsolated,
         getValueFromMain

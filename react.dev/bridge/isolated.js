@@ -3,6 +3,10 @@
     const TERABITHIA_BRIDGE_ID = 'TERABITHIA_EXTENSION';
     // Extension Identifier
 
+    // Make identifier easily available in all other content scripts
+    // We can safely set this in global scope since it will not conflict with other extensions, only ours will access this variable in ISOLATED context
+    window.TERABITHIA_BRIDGE_ID = TERABITHIA_BRIDGE_ID;
+
     window.TerabithiaBridge[TERABITHIA_BRIDGE_ID].addHandlers({
         helloFromMain
     });

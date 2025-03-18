@@ -1,6 +1,8 @@
-// Extension Identifier
-const TERABITHIA_BRIDGE_ID = 'TERABITHIA_EXTENSION';
-// Extension Identifier
+// You can explicity set the bridge ID in your content script or just allow it to be set in global scope in your bridge file for ISOLATED
+// In this example, we already set TERABITHIA_BRIDGE_ID in global scope in "react.dev/bridge/isolated.js"
+// // Extension Identifier
+// const TERABITHIA_BRIDGE_ID = 'TERABITHIA_EXTENSION';
+// // Extension Identifier
 
 /*
     There are two ways to write bridge functions:
