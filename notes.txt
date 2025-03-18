@@ -16,4 +16,4 @@ Step 3. Add a bridge folder for a specific website you want to use terabithia on
 
 Step 4. Add the bridge files at the top of your "content_scripts", but under the main terabithia scripts.
 
-Step 5. Adjust functions in isolated.js and 
+Step 5. Adjust functions in ISOLATED.js and MAIN.js
