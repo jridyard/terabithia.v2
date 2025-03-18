@@ -11,23 +11,27 @@
     "content_scripts": [
         {
             "matches": ["<all_urls>"],
-            "js": ["terabithia/terabithia-isolated.js"],
+            "js": ["terabithia/terabithia-ISOLATED.js"],
             "world": "ISOLATED"
         },
         {
             "matches": ["<all_urls>"],
-            "js": ["terabithia/terabithia-main.js"],
+            "js": ["terabithia/terabithia-MAIN.js"],
             "world": "MAIN"
         },
         {
             "matches": ["https://react.dev/*"],
-            "js": ["react.dev/isolated.js"],
+            "js": ["react.dev/bridge/isolated.js"],
             "world": "ISOLATED"
         },
         {
             "matches": ["https://react.dev/*"],
-            "js": ["react.dev/main.js"],
+            "js": ["react.dev/bridge/main.js"],
             "world": "MAIN"
+        },
+        {
+            "matches": ["https://react.dev/*"],
+            "js": ["react.dev/test.js"]
         }
     ],
     "web_accessible_resources": [

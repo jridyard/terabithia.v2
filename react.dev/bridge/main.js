@@ -1,10 +1,11 @@
 (() => {
-    const EXTENSION_ID = 'TERABITHIA_EXTENSION';
-    window.TerabithiaBridge[EXTENSION_ID].addHandlers({
-        sayHello
+    const TERABITHIA_BRIDGE_ID = 'TERABITHIA_EXTENSION';
+
+    window.TerabithiaBridge[TERABITHIA_BRIDGE_ID].addHandlers({
+        helloIsolated
     });
 
-    function sayHello(messageFromIsolatedContext) {
+    function helloIsolated(messageFromIsolatedContext) {
         console.log('Hello from isolated context (logged in main): ', messageFromIsolatedContext);
         return {
             success: true,

@@ -1,6 +1,7 @@
 (() => {
-    const EXTENSION_ID = 'TERABITHIA_EXTENSION';
-    window.TerabithiaBridge[EXTENSION_ID].addHandlers({
+    const TERABITHIA_BRIDGE_ID = 'TERABITHIA_EXTENSION';
+
+    window.TerabithiaBridge[TERABITHIA_BRIDGE_ID].addHandlers({
         helloMain
     });
 
