@@ -6,6 +6,8 @@
 
     // Extension Identifier
     const TERABITHIA_BRIDGE_ID = 'TERABITHIA_EXTENSION';
+    // Extension Identifier
+
     const CONTEXT = 'ISOLATED';
     const COUNTERPART = 'MAIN';
 
@@ -21,6 +23,7 @@
     // Create or get the bridge for this extension
     if (!window.TerabithiaBridge[TERABITHIA_BRIDGE_ID]) {
         window.TerabithiaBridge[TERABITHIA_BRIDGE_ID] = {
+            functions: {}, // When a handler is added, we will send a message to the counterpart and it will be added as a function to call directly
             handlers: {}, // Custom handler functions; Users can generate these in a separate script
             addHandlers: (handlers = {}) => {
                 if (!window.TerabithiaBridge[TERABITHIA_BRIDGE_ID]) {
@@ -33,6 +36,19 @@
                 // go through keys in handlers and set to window.TerabithiaBridge[extensionId].handlers object 1 at a time
                 Object.entries(handlers).forEach(([handlerName, handlerCallback]) => {
                     window.TerabithiaBridge[TERABITHIA_BRIDGE_ID].handlers[handlerName] = handlerCallback;
+                    // Send message to main context to add the handler as a function
+                    window.postMessage(
+                        {
+                            source: TERABITHIA_BRIDGE_ID,
+                            context: CONTEXT,
+                            type: 'default-command',
+                            command: 'addFunction',
+                            data: {
+                                handlerName
+                            }
+                        },
+                        '*'
+                    );
                 });
             }
         };
@@ -139,20 +155,29 @@
             return;
         }
 
-        const { messageId, command, data } = event.data;
+        const { messageId, command, data, type } = event.data;
         let response = {
             success: false,
             message: `Unknown command: ${command}`
         };
 
         // Commands handled in ISOLATED context
-        // Check for custom handler functions
-        if (
-            window.TerabithiaBridge[TERABITHIA_BRIDGE_ID].handlers &&
-            typeof window.TerabithiaBridge[TERABITHIA_BRIDGE_ID].handlers[command] === 'function'
-        ) {
+        // Handle different commands
+        if (type === 'default-command') {
+            switch (command) {
+                case 'addFunction':
+                    bridge.functions[data.handlerName] = async (json = {}) => {
+                        return await bridge.executeInMain(data.handlerName, json);
+                    };
+                    response = {
+                        success: true,
+                        message: `Function added: ${data.handlerName}`
+                    };
+                    break;
+            }
+        } else if (bridge.handlers[command]) {
             try {
-                response = await window.TerabithiaBridge[TERABITHIA_BRIDGE_ID].handlers[command](data);
+                response = await bridge.handlers[command](data);
             } catch (error) {
                 response = {
                     success: false,

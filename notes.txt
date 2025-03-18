@@ -1,0 +1,19 @@
+Step 1. Add "terabithia" folder to your project
+
+Step 2. In your manifest.json file, under "content_scripts" add 2 keys at the top like so:
+        {
+            "matches": ["<all_urls>"],
+            "js": ["terabithia/terabithia-ISOLATED.js"],
+            "world": "ISOLATED"
+        },
+        {
+            "matches": ["<all_urls>"],
+            "js": ["terabithia/terabithia-MAIN.js"],
+            "world": "MAIN"
+        }
+
+Step 3. Add a bridge folder for a specific website you want to use terabithia on
+
+Step 4. Add the bridge files at the top of your "content_scripts", but under the main terabithia scripts.
+
+Step 5. Adjust functions in isolated.js and 

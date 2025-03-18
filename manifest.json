@@ -1,13 +1,9 @@
 {
     "name": "Terabithia V2",
     "description": "Extension for testing and development of the Terabithia.JS framework.",
-    "version": "2.0.0.1",
+    "version": "2.0.1.0",
     "manifest_version": 3,
     "host_permissions": ["<all_urls>"],
-    "permissions": ["storage"],
-    "background": {
-        "service_worker": "background.js"
-    },
     "content_scripts": [
         {
             "matches": ["<all_urls>"],
@@ -21,23 +17,17 @@
         },
         {
             "matches": ["https://react.dev/*"],
-            "js": ["react.dev/bridge/isolated.js"],
+            "js": ["react.dev/bridge/ISOLATED.js"],
             "world": "ISOLATED"
         },
         {
             "matches": ["https://react.dev/*"],
-            "js": ["react.dev/bridge/main.js"],
+            "js": ["react.dev/bridge/MAIN.js"],
             "world": "MAIN"
         },
         {
             "matches": ["https://react.dev/*"],
-            "js": ["react.dev/test.js"]
-        }
-    ],
-    "web_accessible_resources": [
-        {
-            "resources": ["images/*", "terabithia.js"],
-            "matches": ["<all_urls>"]
+            "js": ["react.dev/example.js"]
         }
     ],
     "icons": {

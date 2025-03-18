@@ -1,15 +1,18 @@
 (() => {
+    // Extension Identifier
     const TERABITHIA_BRIDGE_ID = 'TERABITHIA_EXTENSION';
+    // Extension Identifier
 
     window.TerabithiaBridge[TERABITHIA_BRIDGE_ID].addHandlers({
-        helloMain
+        helloFromMain
     });
 
-    function helloMain(messageFromMainContext) {
-        console.log('Hello from main context (logged in isolated): ', messageFromMainContext);
+    function helloFromMain({ message }) {
+        console.log('Message received from MAIN context (logged in ISOLATED) <> Your message: ', message);
+        console.log('Now sending response back to MAIN!');
         return {
             success: true,
-            message: 'Hello from isolated context!'
+            data: 'Message was successfully sent from MAIN to ISOLATED. This value was then returned back to MAIN!'
         };
     }
 })();
