@@ -44,3 +44,9 @@ TerabithiaBridge[TERABITHIA_BRIDGE_ID].executeInMain('getValueFromMain').then((r
 // BRIDGE_FUNCTIONS.getValueFromMain().then((response) => {
 //     console.log('JSON response received from main context: ', response);
 // });
+
+async function clickApiReferenceButton() {
+    const result = await TerabithiaBridge[TERABITHIA_BRIDGE_ID].executeInMain('clickApiReferenceButton');
+    console.log('JSON response received from main context after attempting to click api reference button: ', result);
+    return result;
+}

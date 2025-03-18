@@ -115,7 +115,8 @@
             // Execute in main context
             const result = await bridge.executeInMain('triggerReactEvent', {
                 selector: `[data-terabithia-target="${targetId}"]`,
-                event
+                event,
+                type: 'default-command'
             });
 
             // Clean up
@@ -137,9 +138,10 @@
             element.setAttribute('data-terabithia-target', targetId);
 
             // Execute in main context
-            const result = await bridge.executeInMain('getReactProperties', {
+            const result = await bridge.executeInMain('getReactProps', {
                 selector: `[data-terabithia-target="${targetId}"]`,
-                reactKeyPrefix
+                reactKeyPrefix,
+                type: 'default-command'
             });
 
             // Clean up

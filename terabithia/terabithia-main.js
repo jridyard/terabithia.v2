@@ -249,6 +249,12 @@
                         message: `Function added: ${data.handlerName}`
                     };
                     break;
+                case 'getReactProps':
+                    response = handleGetReactProps(data);
+                    break;
+                case 'triggerReactEvent':
+                    response = handleTriggerReactEvent(data);
+                    break;
             }
         } else if (bridge.handlers[command]) {
             try {

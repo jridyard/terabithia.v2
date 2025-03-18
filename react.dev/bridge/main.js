@@ -8,7 +8,8 @@
 
     window.TerabithiaBridge[TERABITHIA_BRIDGE_ID].addHandlers({
         helloFromIsolated,
-        getValueFromMain
+        getValueFromMain,
+        clickApiReferenceButton
     });
 
     function helloFromIsolated({ message }) {
@@ -30,6 +31,18 @@
         return {
             success: true,
             data: randInt
+        };
+    }
+
+    function clickApiReferenceButton() {
+        const apiReferenceButton = document.querySelector('[aria-label="API Reference"]');
+        const reactProps = TerabithiaBridge[TERABITHIA_BRIDGE_ID].helpers.getReactProps(apiReferenceButton);
+        reactProps.onClick({
+            currentTarget: apiReferenceButton,
+            preventDefault: () => {}
+        });
+        return {
+            success: true
         };
     }
 })();
